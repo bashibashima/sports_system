@@ -28,10 +28,8 @@
       
 
                                 <div class="table-data-feature">
-                                                        <a href="" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                        </a>
-                                                        <a href="" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        
+                                                        <a href="{{route('delete',$player->id)}}" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
                                                         </a>
                                     </div>

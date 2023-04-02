@@ -27,16 +27,16 @@ Route::get('/admin',[ AdminController::class,"index"]);
 
 Route::post('admin/auth',[ AdminController::class,"auth"])->name("auth");
 
-Route::group(['middleware'=>'admin_middleware'],function(){
+//Route::group(['middleware'=>'admin_middleware'],function(){
        Route::get('admin/dashboard',[Admincontroller::class,"dashboard"])->name('dashboard');
-    //    Route::get('admin/updatepassword',[Admincontroller::class,"updatepassword"])->name('admin/updatepassword');
+     // Route::get('admin/updatepassword',[Admincontroller::class,"updatepassword"])->name('updatepassword');
    Route::get('/admin/logout', function () {
             session()->forget('ADMIN_LOGIN');
             session()->forget('ADMIN_ID');
             session()->flash('error','Logout Successfully');
             return redirect('admin/login');
    });
-});
+//});
 
 
 //frontend template..
@@ -48,7 +48,7 @@ Route::post('users/auth',[ PlayersController::class,"auth"])->name("auth");
 
 Route::group(['middleware'=>'players_middleware'],function(){
        Route::get('users/userdashboard',[PlayersController::class,"dashboard"])->name("dashboard");
-    //    Route::get('users/updatepassword',[PlayersController::class,"updatepassword"])->name('users/updatepassword');
+      //Route::get('users/updatepassword',[PlayersController::class,"updatepassword"])->name('updatepassword');
    Route::get('/users/logout', function () {
             session()->forget('USER_LOGIN');
             session()->forget('USER_ID');
@@ -63,6 +63,12 @@ Route::group(['middleware'=>'players_middleware'],function(){
 //Admin Team Part
 
 Route::get('/',[AdminController::class,"Dashboard"])->name("Dashboard");
+
+Route::get('/match',[AdminController::class,"matches"])->name("matches");
+
+Route::get('/practice',[AdminController::class,"practices"])->name("practices");
+
+Route::get('/attend',[AdminController::class,"attendence_status"])->name("attendence_status");
 
 Route::get('/team',[TeamController::class,"team"])->name("team");
 
@@ -85,6 +91,7 @@ Route::get('/add_player',[PlayersController::class,"Add_players"])->name("Add_pl
 
 Route::post('/create',[PlayersController::class,"store_players"])->name("store_players");
 
+Route::get('/delete_player/{id}', [PlayersController::class,'delete'])->name('delete');
 
 
 

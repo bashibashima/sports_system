@@ -104,17 +104,17 @@
                         </li>
 
                         <li>
-                            <a href="">
+                            <a href="{{route('practices')}}">
                                 <i class="fas fa-tachometer-alt"></i>Schedule Practices</a>
                         </li>
 
                         <li>
-                            <a href="">
+                            <a href="{{route('matches')}}">
                                 <i class="fas fa-tachometer-alt"></i>Schedule Matches</a>
                         </li>
 
                         <li>
-                            <a href="">
+                            <a href="{{route('attendence_status')}}">
                                 <i class="fas fa-tachometer-alt"></i>Attendance</a>
                         </li>
                     </ul>

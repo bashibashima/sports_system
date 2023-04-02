@@ -68,7 +68,6 @@ class PlayersController extends Controller
  //bashi.....
  public function players()
  {
-
     $players = DB::table('players')
             ->join('team', 'players.team_id', '=', 'team.id')
             ->select('players.id', 'players.name', 'team.name as team_id')
@@ -88,71 +87,33 @@ class PlayersController extends Controller
 
  public function store_players(Request $request)
  {
-    //     $row= $request->validate( [
-    //                                   'name' => 'required',
-    //                                   'email'=>'required|string|email|max:255|unique',
-    //                                   'dob'=>'date', 
-    //                                   'password'=>'required|string|min:8',
-                                
-    //                       ]);
-
-    //                       $row=$request->post("team_id");
-    //      $row = $request->all();
-    //      //dd($data);
-    //      //Course::create($data);
-    //      //return view ('admin/courses')->with('datas',$data);
-    //    $data=PlayersModel::create($row);
-    //     return view('admin/players/players')->with('datas',$data);
-    // return redirect('teams/add')->with('success', 'Team created successfully!');
-
-
-    // Validate the request data
-    $validatedData = $request->validate([
+        // Validate the request data
+       $validatedData = $request->validate([
         'team_id' => 'required|exists:team,id',
         'name' => 'required|string|max:255',
         'email' => 'required|email|max:255|unique:players,email',
         'dob' => 'required|date',
         'password' => 'required|string|min:8',
         
-    ]);
+                                             ]);
 
-    // Insert the player data into the database
-    DB::table('players')->insert([
+        // Insert the player data into the database
+       DB::table('players')->insert([
         'team_id' => $validatedData['team_id'],
         'name' => $validatedData['name'],
         'email' => $validatedData['email'],
         'dob' => $validatedData['dob'],
         'password' => $validatedData['password']
-    ]);
+                                     ]);
+        return view('admin/players/player');
+    }
 
-    
-    return view('admin/players/player');
- }
 
- 
-
- // public function edit($id)
- // {
- //     //echo "hai";
- //      $data=Teams::findOrFail($id);
- //      //dd($data);
- //     // return view('admin/teams/edit')->with('datas',$data);
- //     return view('admin/teams/edit', compact('data'));
- // }
-
- // public function update(Request $request,$id)
- // {
- //     $data=Teams::findOrFail($id);
- //     $data->name=$request->input('name');
- //     $data->save();
-     
- // }
-
- // public function delete($id)
- // {
- //     $data=Teams::findOrFail($id);
- //     $data->delete();
- //     return view('admin/teams/team');
- // }
+    public function delete($id)
+    {
+        $data=PlayersModel::findOrFail($id);
+        $data->delete();
+        //return view('admin/players/players');
+    }
 }
 ?>
