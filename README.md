@@ -1,4 +1,6 @@
 #Sports Team Management System
+
+
 This is a web-based application that helps coaches  manage their teams. The system is divided into two parts: one for the admin and one for the users. The admin can  
 Add and manage teams,Add and manage players,Schedule practices and games,Manage attendance for practices and games,while the users can view team and event details .
 
